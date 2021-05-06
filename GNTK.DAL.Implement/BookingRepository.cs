@@ -29,9 +29,9 @@ namespace GNTK.DAL.Implement
                 parameters.Add("@Distance", request.Distance);
                 parameters.Add("@UnitPrice", request.UnitPrice);
                 parameters.Add("@PickedUpLatitude", request.PickedUpLatitude);
-                parameters.Add("@PickedUpLongtitude", request.PickedUpLongtitude);
+                parameters.Add("@PickedUpLongitude", request.PickedUpLongitude);
                 parameters.Add("@DropedOffLatitude", request.DropedOffLatitude);
-                parameters.Add("@DropedOffLongtitude", request.DropedOffLongtitude);
+                parameters.Add("@DropedOffLongitude", request.DropedOffLongitude);
                 return await SqlMapper.QueryFirstAsync<BookingTransportRes>(
                                                 cnn: connection,
                                                 sql: "sp_BookingTransport",
@@ -71,7 +71,7 @@ namespace GNTK.DAL.Implement
                 parameters.Add("@InRadius", request.InRadius);
                 return await SqlMapper.QueryAsync<BookingsAroundRes>(
                                                 cnn: connection,
-                                                sql: "sp_PickedUpCustomer",
+                                                sql: "sp_GetBookingsAround",
                                                 param: parameters,
                                                 commandType: CommandType.StoredProcedure);
             }

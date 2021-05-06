@@ -136,5 +136,21 @@ namespace GNTK.BAL.Implement
                 throw ex;
             }
         }
+
+        public async Task<IEnumerable<BookingsAroundRes>> GetBookingsAround(BookingsAroundReq request)
+        {
+            try
+            {
+                if (request != null)
+                {
+                    return await driverRepository.GetBookingsAround(request);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

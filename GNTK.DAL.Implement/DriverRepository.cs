@@ -201,5 +201,24 @@ namespace GNTK.DAL.Implement
                 throw ex;
             }
         }
+
+        public async Task<IEnumerable<BookingsAroundRes>> GetBookingsAround(BookingsAroundReq request)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@DriverId", request.DriverId);
+                parameters.Add("@InRadius", request.InRadius);
+                return await SqlMapper.QueryAsync<BookingsAroundRes>(
+                                                cnn: connection,
+                                                sql: "sp_GetBookingsAround",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

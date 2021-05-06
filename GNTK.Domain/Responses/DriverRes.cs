@@ -20,6 +20,6 @@ namespace GNTK.Domain.Responses
         public int Country { get; set; }
         public string Address { get; set; }
         public decimal Latitude { get; set; }
-        public decimal Longtitude { get; set; }
+        public decimal Longitude { get; set; }
     }
 }

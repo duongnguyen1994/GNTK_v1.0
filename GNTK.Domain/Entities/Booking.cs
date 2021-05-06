@@ -15,11 +15,11 @@ namespace GNTK.Domain.Entities
         [Required]
         public decimal PickedUpLatitude{ get; set; }
         [Required]
-        public decimal PickedUpLongtitude { get; set; }
+        public decimal PickedUpLongitude { get; set; }
         [Required]
         public decimal DropedOffLatitude { get; set; }
         [Required]
-        public decimal DropedOffLongtitude{ get; set; }
+        public decimal DropedOffLongitude{ get; set; }
         [Required]
         public Decimal Distance { get; set; }
         [Required]

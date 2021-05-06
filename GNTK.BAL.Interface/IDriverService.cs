@@ -15,5 +15,6 @@ namespace GNTK.BAL.Interface
         public Task<BookingRes> DropedOffCustomer(BookingReq request);
         public Task<DriverRes> GetDriverById(string driverId);
         public Task<IEnumerable<DriverRes>> GetDrivers();
+        public Task<IEnumerable<BookingsAroundRes>> GetBookingsAround(BookingsAroundReq request);
     }
 }

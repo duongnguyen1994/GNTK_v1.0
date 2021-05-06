@@ -23,7 +23,7 @@ namespace GNTK.Domain.Entities
         [Required]
         public bool Status { get; set; } // check status of driver(true: on, ready to accept booking, false: off)
         public decimal Latitude { get; set; }
-        public decimal Longtitude { get; set; }
+        public decimal Longitude { get; set; }
         [Required]
         public DateTime JoinDate { get; set; }
         [Required]

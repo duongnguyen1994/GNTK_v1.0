@@ -11,8 +11,8 @@ namespace GNTK.Domain.Requests
         public string CustomerId { get; set; }
         public string DiscountId { get; set; }
         public decimal PickedUpLatitude { get; set; }
-        public decimal PickedUpLongtitude { get; set; }
+        public decimal PickedUpLongitude { get; set; }
         public decimal DropedOffLatitude { get; set; }
-        public decimal DropedOffLongtitude { get; set; }
+        public decimal DropedOffLongitude { get; set; }
     }
 }

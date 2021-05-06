@@ -53,5 +53,11 @@ namespace GNTK.API.Controllers
         {
             return Ok(await driverService.GetDrivers());
         }
+        [HttpPost]
+        [Route("GetBookingsAround")]
+        public async Task<IActionResult> GetBookingsAround(BookingsAroundReq request)
+        {
+            return Ok(await driverService.GetBookingsAround(request));
+        }
     }
 }
