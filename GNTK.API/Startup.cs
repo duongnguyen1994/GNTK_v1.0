@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
 
 namespace GNTK.API
 {
@@ -32,7 +33,7 @@ namespace GNTK.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
             services.AddIdentity<AppIdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<IDriverRepository, DriverRepository>();
@@ -42,6 +43,7 @@ namespace GNTK.API
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IBookingService, BookingService>();
             services.AddSwaggerGen();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +62,8 @@ namespace GNTK.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "GNTK API");
             });
+
+            app.UseCors(opt => opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 

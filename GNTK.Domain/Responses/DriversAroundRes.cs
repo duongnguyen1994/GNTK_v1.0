@@ -4,11 +4,10 @@ using System.Text;
 
 namespace GNTK.Domain.Responses
 {
-    public class BookingsAroundRes
+    public class DriversAroundRes
     {
-        public string BookingId { get; set; }
+        public string DriverId { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
-        public decimal InRadius { get; set; }
     }
 }

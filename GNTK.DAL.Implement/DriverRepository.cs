@@ -220,5 +220,26 @@ namespace GNTK.DAL.Implement
                 throw ex;
             }
         }
+
+        public async Task<UpdateDriverLocationRes> UpdateDriverLocation(UpdateDriverLocationReq request)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@DriverId", request.DriverId);
+                parameters.Add("@Latitude", request.Latitude);
+                parameters.Add("@Longitude", request.Longitude);
+                return await SqlMapper.QueryFirstAsync<UpdateDriverLocationRes>(
+                                                cnn: connection,
+                                                sql: "sp_UpdateDriverLocation",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

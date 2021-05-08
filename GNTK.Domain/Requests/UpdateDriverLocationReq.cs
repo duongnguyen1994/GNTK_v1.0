@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GNTK.Domain.Responses
+namespace GNTK.Domain.Requests
 {
-    public class BookingsAroundRes
+    public class UpdateDriverLocationReq
     {
-        public string BookingId { get; set; }
+        public string DriverId { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
-        public decimal InRadius { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GNTK.BAL.Interface;
+using GNTK.Domain.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,6 +28,18 @@ namespace GNTK.API.Controllers
         public async Task<IActionResult> GetCustomers()
         {
             return Ok(await customerService.GetCustomers());
+        }
+        [HttpPost]
+        [Route("BookingTransport")]
+        public async Task<IActionResult> BookingTransport(BookingTransportReq request)
+        {
+            return Ok(await customerService.BookingTransport(request));
+        }
+        [HttpPost]
+        [Route("GetDriversAround")]
+        public async Task<IActionResult> GetDriversAround(DriversAroundReq request)
+        {
+            return Ok(await customerService.GetDriversAround(request));
         }
     }
 }

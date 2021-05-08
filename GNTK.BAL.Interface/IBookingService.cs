@@ -9,8 +9,6 @@ namespace GNTK.BAL.Interface
 {
     public interface IBookingService
     {
-        public Task<IEnumerable<BookingsAroundRes>> GetBookingsAround(BookingsAroundReq request);
         public Task<BookingInfoRes> GetBookingById(string bookingId);
-        public Task<BookingTransportRes> BookingTransport(BookingTransportReq request);
     }
 }

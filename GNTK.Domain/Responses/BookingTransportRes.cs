@@ -9,6 +9,6 @@ namespace GNTK.Domain.Responses
         public string BookingId { get; set; }
         public string Message { get; set; }
         public decimal Distance { get; set; }
-        public decimal UnitPrince { get; set; }
+        public decimal UnitPrice { get; set; }
     }
 }

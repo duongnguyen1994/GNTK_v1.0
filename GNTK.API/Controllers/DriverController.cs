@@ -59,5 +59,11 @@ namespace GNTK.API.Controllers
         {
             return Ok(await driverService.GetBookingsAround(request));
         }
+        [HttpPut]
+        [Route("UpdateDriverLocation")]
+        public async Task<IActionResult> UpdateDriverLocation(UpdateDriverLocationReq request)
+        {
+            return Ok(await driverService.UpdateDriverLocation(request));
+        }
     }
 }

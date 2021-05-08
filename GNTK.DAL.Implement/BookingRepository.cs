@@ -19,30 +19,6 @@ namespace GNTK.DAL.Implement
 
         }
 
-        public async Task<BookingTransportRes> BookingTransport(BookingTransportReq request)
-        {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@CustomerId", request.CustomerId);
-                parameters.Add("@DiscountId", request.DiscountId);
-                parameters.Add("@Distance", request.Distance);
-                parameters.Add("@UnitPrice", request.UnitPrice);
-                parameters.Add("@PickedUpLatitude", request.PickedUpLatitude);
-                parameters.Add("@PickedUpLongitude", request.PickedUpLongitude);
-                parameters.Add("@DropedOffLatitude", request.DropedOffLatitude);
-                parameters.Add("@DropedOffLongitude", request.DropedOffLongitude);
-                return await SqlMapper.QueryFirstAsync<BookingTransportRes>(
-                                                cnn: connection,
-                                                sql: "sp_BookingTransport",
-                                                param: parameters,
-                                                commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         public async Task<BookingInfoRes> GetBookingById(string bookingId)
         {
@@ -53,25 +29,6 @@ namespace GNTK.DAL.Implement
                 return await SqlMapper.QueryFirstAsync<BookingInfoRes>(
                                                 cnn: connection,
                                                 sql: "sp_GetBookingById",
-                                                param: parameters,
-                                                commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<IEnumerable<BookingsAroundRes>> GetBookingsAround(BookingsAroundReq request)
-        {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@DriverId", request.DriverId);
-                parameters.Add("@InRadius", request.InRadius);
-                return await SqlMapper.QueryAsync<BookingsAroundRes>(
-                                                cnn: connection,
-                                                sql: "sp_GetBookingsAround",
                                                 param: parameters,
                                                 commandType: CommandType.StoredProcedure);
             }

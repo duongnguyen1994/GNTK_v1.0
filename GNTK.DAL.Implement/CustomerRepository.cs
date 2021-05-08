@@ -23,6 +23,31 @@ namespace GNTK.DAL.Implement
             this.userManager = userManager;
         }
 
+        public async Task<BookingTransportRes> BookingTransport(BookingTransportReq request)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@CustomerId", request.CustomerId);
+                parameters.Add("@DiscountId", request.DiscountId);
+                parameters.Add("@Distance", request.Distance);
+                parameters.Add("@UnitPrice", request.UnitPrice);
+                parameters.Add("@PickedUpLatitude", request.PickedUpLatitude);
+                parameters.Add("@PickedUpLongitude", request.PickedUpLongitude);
+                parameters.Add("@DropedOffLatitude", request.DropedOffLatitude);
+                parameters.Add("@DropedOffLongitude", request.DropedOffLongitude);
+                return await SqlMapper.QueryFirstAsync<BookingTransportRes>(
+                                                cnn: connection,
+                                                sql: "sp_BookingTransport",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<CustomerRegisterRes> CreateCustomer(CustomerRegisterReq request)
         {
             try
@@ -90,6 +115,26 @@ namespace GNTK.DAL.Implement
                                                 cnn: connection,
                                                 sql: "sp_GetCustomers",
                                                 commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IEnumerable<DriversAroundRes>> GetDriversAround(DriversAroundReq request)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@CustomerLatitude", request.CustomerLatitude);
+                parameters.Add("@CustomerLongitude", request.CustomerLongitude);
+                var result = await SqlMapper.QueryAsync<DriversAroundRes>(
+                                                cnn: connection,
+                                                sql: "sp_GetDriversAround",
+                                                param: parameters,
+                                                commandType: CommandType.StoredProcedure);
+                return result;
             }
             catch (Exception ex)
             {

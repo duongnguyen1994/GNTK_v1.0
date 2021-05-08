@@ -152,5 +152,25 @@ namespace GNTK.BAL.Implement
                 throw ex;
             }
         }
+
+        public async Task<UpdateDriverLocationRes> UpdateDriverLocation(UpdateDriverLocationReq request)
+        {
+            try
+            {
+                if (request != null)
+                {
+                    return await driverRepository.UpdateDriverLocation(request);
+                }
+                return new UpdateDriverLocationRes()
+                {
+                    DriverId = "",
+                    Message = "Lỗi không thể cập nhật vị trí"
+                };
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

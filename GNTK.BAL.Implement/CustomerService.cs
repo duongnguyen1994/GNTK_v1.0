@@ -17,6 +17,25 @@ namespace GNTK.BAL.Implement
         {
             this.customerRepository = customerRepository;
         }
+
+        public async Task<BookingTransportRes> BookingTransport(BookingTransportReq request)
+        {
+            try
+            {
+                if (request != null)
+                    return await customerRepository.BookingTransport(request);
+                return new BookingTransportRes()
+                {
+                    BookingId = "",
+                    Message = "Có lỗi xảy ra, xin hãy liên hệ với tổng đài để khắc phục"
+                };
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public async Task<CustomerRegisterRes> CreateCustomer(CustomerRegisterReq request)
         {
             try
@@ -53,6 +72,22 @@ namespace GNTK.BAL.Implement
         public async Task<IEnumerable<CustomerRes>> GetCustomers()
         {
             return await customerRepository.GetCustomers();
+        }
+
+        public async Task<IEnumerable<DriversAroundRes>> GetDriversAround(DriversAroundReq request)
+        {
+            try
+            {
+                if(request != null)
+                {
+                    return await customerRepository.GetDriversAround(request);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

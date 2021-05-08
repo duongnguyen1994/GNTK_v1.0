@@ -12,5 +12,7 @@ namespace GNTK.BAL.Interface
         public Task<CustomerRegisterRes> CreateCustomer(CustomerRegisterReq request);
         public Task<CustomerRes> GetCustomerById(string customerId);
         public Task<IEnumerable<CustomerRes>> GetCustomers();
+        public Task<BookingTransportRes> BookingTransport(BookingTransportReq request);
+        public Task<IEnumerable<DriversAroundRes>> GetDriversAround(DriversAroundReq request);
     }
 }

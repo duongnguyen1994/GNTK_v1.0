@@ -16,5 +16,6 @@ namespace GNTK.DAL.Interface
         public Task<DriverRes> GetDriverById(string driverId);
         public Task<IEnumerable<DriverRes>> GetDrivers();
         public Task<IEnumerable<BookingsAroundRes>> GetBookingsAround(BookingsAroundReq request);
+        public Task<UpdateDriverLocationRes> UpdateDriverLocation(UpdateDriverLocationReq request);
     }
 }
