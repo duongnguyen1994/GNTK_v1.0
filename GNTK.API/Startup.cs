@@ -18,6 +18,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GNTK.API
 {
@@ -42,8 +45,23 @@ namespace GNTK.API
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<ILocationService, LocationService>();
             services.AddSwaggerGen();
             services.AddCors();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            {
+                opt.RequireHttpsMetadata = false;
+                opt.SaveToken = true;
+                opt.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

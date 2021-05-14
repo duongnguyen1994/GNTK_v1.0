@@ -14,10 +14,10 @@ namespace GNTK.Domain.Responses
         public string DrivingLicenseNumber { get; set; }
         public bool Status { get; set; }
         public string JoinDate { get; set; }
-        public int Ward { get; set; }
-        public int District { get; set; }
-        public int Province { get; set; }
-        public int Country { get; set; }
+        public string Ward { get; set; }
+        public string District { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
         public string Address { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }

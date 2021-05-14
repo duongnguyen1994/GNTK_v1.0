@@ -14,5 +14,7 @@ namespace GNTK.Domain.Requests
         public decimal PickedUpLongitude { get; set; }
         public decimal DropedOffLatitude { get; set; }
         public decimal DropedOffLongitude { get; set; }
+        public string OriginAddress { get; set; }
+        public string DestinationAddress { get; set; }
     }
 }

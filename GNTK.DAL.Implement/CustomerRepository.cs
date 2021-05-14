@@ -36,6 +36,8 @@ namespace GNTK.DAL.Implement
                 parameters.Add("@PickedUpLongitude", request.PickedUpLongitude);
                 parameters.Add("@DropedOffLatitude", request.DropedOffLatitude);
                 parameters.Add("@DropedOffLongitude", request.DropedOffLongitude);
+                parameters.Add("@OriginAddress", request.OriginAddress);
+                parameters.Add("@DestinationAddress", request.DestinationAddress);
                 return await SqlMapper.QueryFirstAsync<BookingTransportRes>(
                                                 cnn: connection,
                                                 sql: "sp_BookingTransport",
