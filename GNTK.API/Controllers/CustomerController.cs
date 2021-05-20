@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace GNTK.API.Controllers
 {
-    [Authorize(Roles ="Customer")]
+    [Authorize]
     public class CustomerController : BaseController
-    {
+    {       
         private readonly ICustomerService customerService;
 
         public CustomerController(ICustomerService customerService)
@@ -32,12 +32,14 @@ namespace GNTK.API.Controllers
         {
             return Ok(await customerService.GetCustomers());
         }
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         [Route("BookingTransport")]
         public async Task<IActionResult> BookingTransport(BookingTransportReq request)
         {
             return Ok(await customerService.BookingTransport(request));
         }
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         [Route("GetDriversAround")]
         public async Task<IActionResult> GetDriversAround(DriversAroundReq request)

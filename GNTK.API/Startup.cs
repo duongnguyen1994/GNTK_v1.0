@@ -47,21 +47,29 @@ namespace GNTK.API
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<ILocationService, LocationService>();
-            services.AddSwaggerGen();
-            services.AddCors();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddAuthentication(auth =>
             {
-                opt.RequireHttpsMetadata = false;
-                opt.SaveToken = true;
-                opt.TokenValidationParameters = new TokenValidationParameters()
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = true,
-                    ValidateAudience = true,
+                    ValidateAudience = true,                   
                     ValidAudience = Configuration["Jwt:Audience"],
                     ValidIssuer = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    RequireExpirationTime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"])),
+                    ValidateIssuerSigningKey = true
                 };
             });
+            services.AddControllers();
+            services.AddSwaggerGen();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +89,7 @@ namespace GNTK.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "GNTK API");
             });
 
-            app.UseCors(opt => opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(opt => opt.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());          
 
             app.UseRouting();
 

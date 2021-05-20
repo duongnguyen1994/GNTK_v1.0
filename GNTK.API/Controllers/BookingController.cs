@@ -1,5 +1,6 @@
 ﻿using GNTK.BAL.Interface;
 using GNTK.Domain.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace GNTK.API.Controllers
 {
+    [Authorize]
     public class BookingController : BaseController
     {
         private readonly IBookingService bookingService;

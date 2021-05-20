@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GNTK.BAL.Interface\GNTK.BAL.Interface.csproj" />
     <ProjectReference Include="..\GNTK.DAL.Interface\GNTK.DAL.Interface.csproj" />
   </ItemGroup>
