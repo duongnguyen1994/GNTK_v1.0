@@ -57,9 +57,9 @@ namespace GNTK.API.Controllers
             try
             {
                 var result = await authService.Authenticate(request.Email, request.Password);
-                if (result != null)
-                    return Ok(new { token = result });
-                return BadRequest("Invalid credentials");
+                if (result!=null)
+                    return Ok(result);
+                return Ok();
             }
             catch (Exception ex)
             {

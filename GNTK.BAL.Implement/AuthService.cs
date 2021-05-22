@@ -24,7 +24,7 @@ namespace GNTK.BAL.Implement
             this.config = config;
             this.userManager = userManager;
         }
-        public async Task<string> Authenticate(string username, string password)
+        public async Task<Object> Authenticate(string username, string password)
         {
             if(!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
@@ -34,27 +34,7 @@ namespace GNTK.BAL.Implement
                     var loginUser = await userManager.CheckPasswordAsync(user, password);
                     if (loginUser)
                     {
-                        var roleName = (await userManager.GetRolesAsync(user) as List<string>).FirstOrDefault();
-                        //var tokenHandler = new JwtSecurityTokenHandler();
-                        //var key = Encoding.ASCII.GetBytes(config["Jwt:Secret"]);
-                        //var tokenDescriptor = new SecurityTokenDescriptor
-                        //{
-                        //    Subject = new ClaimsIdentity(new Claim[]
-                        //{
-                        //    new Claim(ClaimTypes.Name, user.Fullname),
-                        //    new Claim(ClaimTypes.Role, roleName),
-                        //    new Claim("userId", user.Id)
-                        //}),
-                        //    Expires = DateTime.UtcNow.AddDays(7),
-                        //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-                        //};
-                        //var token = tokenHandler.CreateToken(tokenDescriptor);
-                        ////return new { Token = tokenHandler.WriteToken(token),
-                        ////             UserId = user.Id,
-                        ////             Fullname = user.Fullname,
-                        ////             Role = roleName
-                        ////           };
-                        //return tokenHandler.WriteToken(token);
+                        var roleName = (await userManager.GetRolesAsync(user) as List<string>).FirstOrDefault();                        
                         var claims = new[] {
                         new Claim("id",user.Id),
                         new Claim("fullname", user.Fullname),
@@ -69,7 +49,10 @@ namespace GNTK.BAL.Implement
                             claims, 
                             expires: DateTime.UtcNow.AddDays(1), 
                             signingCredentials: signIn);
-                        return new JwtSecurityTokenHandler().WriteToken(token);
+                        return new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token)
+                        };
                     }
                 }
             }

@@ -29,9 +29,9 @@ namespace GNTK.API.Controllers
         [Authorize(Roles = "Driver")]
         [HttpPut]
         [Route("ChangeDriverStatus")]
-        public async Task<IActionResult> ChangeDriverStatus(string driverId)
+        public async Task<IActionResult> ChangeDriverStatus(DriverStatusReq request)
         {
-            return Ok(await driverService.ChangeDriverStatus(driverId));
+            return Ok(await driverService.ChangeDriverStatus(request));
         }
         [Authorize(Roles = "Driver")]
         [HttpPut]

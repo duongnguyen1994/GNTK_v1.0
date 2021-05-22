@@ -36,12 +36,12 @@ namespace GNTK.BAL.Implement
             }
         }
 
-        public async Task<DriverStatusRes> ChangeDriverStatus(string driverId)
+        public async Task<DriverStatusRes> ChangeDriverStatus(DriverStatusReq request)
         {
             try
             {
-                if (!String.IsNullOrEmpty(driverId))
-                    return await driverRepository.ChangeDriverStatus(driverId);
+                if (!String.IsNullOrEmpty(request.DriverId))
+                    return await driverRepository.ChangeDriverStatus(request);
                 return new DriverStatusRes()
                 {
                     DriverId = "",

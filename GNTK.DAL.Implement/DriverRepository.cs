@@ -43,12 +43,13 @@ namespace GNTK.DAL.Implement
             }
         }
 
-        public async Task<DriverStatusRes> ChangeDriverStatus(string driverId)
+        public async Task<DriverStatusRes> ChangeDriverStatus(DriverStatusReq request)
         {
             try
             {
                 DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@DriverId", driverId);
+                parameters.Add("@DriverId", request.DriverId);
+                parameters.Add("@Status", request.Status);
                 return await SqlMapper.QueryFirstAsync<DriverStatusRes>(
                                                 cnn: connection,
                                                 sql: "sp_ChangeStatusOfDriver",

@@ -10,7 +10,7 @@ namespace GNTK.BAL.Interface
     {
         public Task<DriverRegisterRes> CreateDriver(DriverRegisterReq request);
         public Task<BookingRes> AcceptBooking(BookingReq request);
-        public Task<DriverStatusRes> ChangeDriverStatus(string driverId);
+        public Task<DriverStatusRes> ChangeDriverStatus(DriverStatusReq request);
         public Task<BookingRes> PickedUpCustomer(BookingReq request);
         public Task<BookingRes> DropedOffCustomer(BookingReq request);
         public Task<DriverRes> GetDriverById(string driverId);

@@ -10,5 +10,7 @@ namespace GNTK.Domain.Responses
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public decimal InRadius { get; set; }
+        public string OriginAddress { get; set; }
+        public string DestinationAddress { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace GNTK.BAL.Interface
 {
     public interface IAuthService
     {
-        public Task<string> Authenticate(string username, string password);
+        public Task<Object> Authenticate(string username, string password);
     }
 }
